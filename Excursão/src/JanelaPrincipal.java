@@ -503,8 +503,11 @@ public class JanelaPrincipal {
 				if (excursao == null) {
 					respR.setText("Crie ou recupere uma excursão antes!");
 				}
-				else if (cpf.equals("") || nome.equals("")){
-					respR.setText("Campo CPF ou Nome vazio).");
+				else if (cpf.equals("") & !nome.equals("")) {
+					respR.setText("Campo CPF vazio.");
+				}
+				else if (cpf.equals("") & nome.equals("")){
+					respR.setText("Campo(s) CPF e Nome vazio(s).");
 				}
 				else {
 					try {
