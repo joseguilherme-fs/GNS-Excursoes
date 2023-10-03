@@ -1,0 +1,113 @@
+import java.awt.EventQueue;
+
+import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class apgExcursao {
+
+	private JFrame frmGnExcurses;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					apgExcursao window = new apgExcursao();
+					window.frmGnExcurses.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public apgExcursao() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmGnExcurses = new JFrame();
+		frmGnExcurses.setIconImage(Toolkit.getDefaultToolkit().getImage(apgExcursao.class.getResource("/Imagens/icon.png")));
+		frmGnExcurses.setTitle("GN Excursões");
+	
+		frmGnExcurses.setResizable(false);
+		frmGnExcurses.setBounds(100, 100, 370, 280);
+		frmGnExcurses.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGnExcurses.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("GN Excursões");
+		lblNewLabel.setForeground(new Color(128, 0, 128));
+		lblNewLabel.setFont(new Font("Strawberry Blossom", Font.BOLD, 45));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(41, 85, 272, 69);
+		frmGnExcurses.getContentPane().add(lblNewLabel);
+		
+		JLabel foto = new JLabel("New label");
+		foto.setBounds(114, 11, 125, 129);
+		frmGnExcurses.getContentPane().add(foto);
+		
+		ImageIcon icon = new ImageIcon(apgExcursao.class.getResource("/Imagens/bus.gif"));
+		icon.setImage(icon.getImage().getScaledInstance(foto.getWidth(),foto.getHeight(),Image.SCALE_DEFAULT));
+		foto.setIcon(icon);
+		
+		JButton btnNewButton = new JButton("Entrar ➡");
+		btnNewButton.setForeground(new Color(128, 0, 128));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        JanelaPrincipal janelaPrincipal = new JanelaPrincipal();
+		        janelaPrincipal.getJanelaRE().setVisible(true);
+		        frmGnExcurses.dispose();
+		    }
+		});
+		btnNewButton.setBackground(SystemColor.window);
+		btnNewButton.setFont(new Font("Yu Gothic UI", Font.BOLD, 15));
+		btnNewButton.setBounds(127, 176, 99, 31);
+		frmGnExcurses.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("Seja bem-vindo(a)! ❤");
+		lblNewLabel_1.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 11));
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(106, 151, 142, 14);
+		frmGnExcurses.getContentPane().add(lblNewLabel_1);
+		
+		
+		
+		// Obtém as dimensões da tela principal
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		// Obtém as dimensões da janela
+		Dimension windowSize = frmGnExcurses.getSize();
+
+		// Calcula a posição da janela no centro da tela
+		int x = (screenSize.width - windowSize.width) / 2;
+		int y = (screenSize.height - windowSize.height) / 2;
+
+		// Define a posição da janela no centro da tela
+		frmGnExcurses.setLocation(x, y);
+		frmGnExcurses.setBounds(x, y, windowSize.width, windowSize.height);
+	}
+	
+		
+
+}

@@ -1,0 +1,19 @@
+
+public class Teste {
+
+	public static void main(String[] args) throws Exception {
+		Excursão teste = new Excursão(5,25.5,5);
+		teste.criarReserva("Guilherme", "953");
+		System.out.println(teste);
+		teste.criarReserva("Natalia", "953");
+		System.out.println(teste);
+		teste.criarReserva("Natalia", "953");
+		System.out.println(teste);
+		
+		
+		
+		
+
+	}
+
+}

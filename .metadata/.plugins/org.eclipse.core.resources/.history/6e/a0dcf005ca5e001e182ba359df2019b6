@@ -1,0 +1,53 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
+
+public class agExcursao1 {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					agExcursao1 window = new agExcursao1();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public agExcursao1() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 613, 417);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(90, 107, 191, 110);
+		frame.getContentPane().add(textArea);
+		textArea.setLineWrap(true);
+	}
+}

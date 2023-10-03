@@ -1,0 +1,159 @@
+import java.util.ArrayList;
+
+public class Excursao {
+	private int codigo;
+	private double preço;
+	private int max;
+	private ArrayList<String> listaReservas = new ArrayList<>();
+	
+	public Excursao(int codigo, double preço, int max) {
+		if (codigo<=0 || max <=0 || preço <=0) {
+			throw new Exception("Valor inválido.");
+		}
+		else {
+			this.codigo = codigo;
+			this.preço = preço;
+			this.max = max;
+			this.listaReservas = new ArrayList<>();
+		}
+	}
+
+	}
+	public Excursao(int codigo) throws Exception {
+		if (codigo<=0) {
+			throw new Exception("Valor inválido.");
+		}
+		else {
+			this.codigo = codigo;
+			this.preco = 0.0;
+			this.max = 0;
+			this.listaReservas = new ArrayList<>();
+		}
+	}
+	
+	public void criarReserva(String nome, String CPF) throws Exception {
+		try {
+			if (listaReservas.size() < max) {
+				for (int i = 0; i < listaReservas.size(); i++) {
+					String cpf_nome[] = (listaReservas.get(i)).split("/");
+					try {
+						if (cpf_nome[1].equals(nome)) {
+							throw new Exception("Desculpe, a reserva já existe.");
+						}
+					} catch (Exception eCriarRes) {
+						System.out.println(eCriarRes.getMessage());
+						return;
+					}
+				}
+				listaReservas.add(CPF + '/' + nome);
+			}
+			else {
+				throw new Exception("Desculpe, a excursão está lotada. Não é possível fazer mais reservas.");
+			}
+			}
+			catch (Exception exLotada) {
+				System.out.println(exLotada.getMessage());
+			}
+	}
+		
+		
+	public void cancelarReserva(String cpf, String nome) {
+	    String reservaParaCancelar = cpf + "/" + nome;
+	    try {
+	        if (listaReservas.contains(reservaParaCancelar)) {
+	            listaReservas.remove(reservaParaCancelar);
+	            System.out.println("Reserva para " + nome + " (CPF: " + cpf + ") cancelada com sucesso!");
+	        } else {
+	            throw new Exception("Reserva para " + nome + " (CPF: " + cpf + ") não encontrada. Não foi possível cancelar.");
+	        }
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    }
+	}
+	
+	public void cancelarReserva(String cpf) {
+	    ArrayList<String> reservasParaRemover = new ArrayList<>();
+
+	    for (String reserva : listaReservas) {
+	        String cpfReserva = reserva.split("/")[0];
+	        if (cpfReserva.equals(cpf)) {
+	            reservasParaRemover.add(reserva);
+	        }
+	    }
+
+	    if (!reservasParaRemover.isEmpty()) {
+	        listaReservas.removeAll(reservasParaRemover);
+	        System.out.println("Todas as reservas para o CPF " + cpf + " foram canceladas com sucesso!");
+	    } else {
+	        System.out.println("Nenhuma reserva encontrada para o CPF " + cpf + ". Nada foi cancelado.");
+	    }
+	}
+	
+	
+	
+	public ArrayList<String> listarReservasPorCpf(String digitos) {
+		ArrayList<String> vazio = new ArrayList<>();
+	    ArrayList<String> reservasPorCpf = new ArrayList<>();
+	    boolean cpfEncontrado = false;
+
+	    for (String reserva : listaReservas) {
+	        String cpfReserva = reserva.split("/")[0];
+	        if (digitos.isEmpty() || cpfReserva.equals(digitos)) {
+	            reservasPorCpf.add(reserva);
+	            cpfEncontrado = true;
+	        }
+	    }
+	    if (!cpfEncontrado && !digitos.isEmpty()) {
+	    	vazio.add("O CPF '" + digitos + "' não foi encontrado na lista de reservas.");
+	        return vazio;
+	    }
+
+	    return reservasPorCpf;
+	}
+	
+	public ArrayList<String> listarReservasPorNome(String texto) {
+		ArrayList<String> vazio = new ArrayList<>();
+	    ArrayList<String> reservasPorNome = new ArrayList<>();
+	    boolean nomeEncontrado = false;
+
+	    for (String reserva : listaReservas) {
+	        String nomeReserva = reserva.split("/")[1];
+	        if (texto.isEmpty() || nomeReserva.equals(texto)) {
+	            reservasPorNome.add(reserva);
+	            nomeEncontrado = true;
+	        }
+	    }
+
+	    if (!nomeEncontrado && !texto.isEmpty()) {
+	    	vazio.add("O nome '" + texto + "' não foi encontrado na lista de reservas.");
+	        return vazio;
+	       
+	    }
+
+	    return reservasPorNome;
+	}
+
+	
+	
+	public double calcularValorTotal() {
+	    return this.preço * listaReservas.size();
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Excursão [Código = " + codigo + "| Preço = " + preço + "| Capacidade máxima = " + max + "| Capacidade total = " + listaReservas.size()
+				+ "]";
+	}
+	
+	public void salvar( ) {
+	
+	}
+	
+	public void carregar() {
+		
+	}
+	
+	
+;
+}

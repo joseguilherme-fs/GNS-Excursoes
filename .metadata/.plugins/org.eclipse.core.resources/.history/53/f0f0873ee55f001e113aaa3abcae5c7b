@@ -1,0 +1,202 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JSeparator;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+
+public class JanelaReservas {
+
+	JFrame frame;
+	private JPanel Excursoes;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_6;
+	private JLabel lblNewLabel_7;
+	private JLabel valorTotal;
+	private JSeparator separator_1;
+	private JLabel respC;
+	private JLabel lblNewLabel_10;
+	private JTextField recuperarText;
+	private JLabel lblNewLabel_11;
+	private JTextField textMax;
+	private JButton btnCriar;
+	private JLabel lblNewLabel_5_1;
+	private JTextField textCodigoCriar;
+	private JLabel labelCodigo;
+	private JTextField textPreço;
+	private JButton btnRecuperar;
+	private JButton btnMostrarValor;
+	private JLabel labelValor;
+	private JSeparator separator_2;
+	private JButton btnReservas;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaReservas window = new JanelaReservas();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public JanelaReservas() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 684, 541);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		Excursoes = new JPanel();
+		Excursoes.setLayout(null);
+		Excursoes.setBounds(0, 0, 668, 502);;
+		frame.getContentPane().add(Excursoes);
+		
+		lblNewLabel_2 = new JLabel("Excursões");
+		lblNewLabel_2.setForeground(Color.MAGENTA);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Mark My Words", Font.BOLD, 32));
+		lblNewLabel_2.setBackground(Color.CYAN);
+		lblNewLabel_2.setBounds(251, 11, 165, 45);
+		Excursoes.add(lblNewLabel_2);
+		
+		lblNewLabel_6 = new JLabel("Criar");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_6.setFont(new Font("Hotel De Paris Xe", Font.PLAIN, 20));
+		lblNewLabel_6.setBackground(Color.BLUE);
+		lblNewLabel_6.setBounds(21, 83, 73, 23);
+		Excursoes.add(lblNewLabel_6);
+		
+		lblNewLabel_7 = new JLabel("Recuperar");
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7.setFont(new Font("Hotel De Paris Xe", Font.PLAIN, 20));
+		lblNewLabel_7.setBounds(21, 388, 138, 23);
+		Excursoes.add(lblNewLabel_7);
+		
+		valorTotal = new JLabel("Valor total");
+		valorTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		valorTotal.setFont(new Font("Hotel De Paris Xe", Font.PLAIN, 20));
+		valorTotal.setBounds(21, 219, 138, 27);
+		Excursoes.add(valorTotal);
+		
+		separator_1 = new JSeparator();
+		separator_1.setBounds(-11, 169, 724, 16);
+		Excursoes.add(separator_1);
+		
+		respC = new JLabel("");
+		respC.setHorizontalAlignment(SwingConstants.CENTER);
+		respC.setBounds(319, 118, 197, 14);
+		Excursoes.add(respC);
+		
+		lblNewLabel_10 = new JLabel("CÓDIGO:");
+		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_10.setBounds(450, 56, 62, 23);
+		Excursoes.add(lblNewLabel_10);
+		
+		recuperarText = new JTextField();
+		recuperarText.setColumns(10);
+		recuperarText.setBounds(235, 389, 197, 23);
+		Excursoes.add(recuperarText);
+		
+		lblNewLabel_11 = new JLabel("PREÇO:");
+		lblNewLabel_11.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_11.setBounds(239, 112, 62, 23);
+		Excursoes.add(lblNewLabel_11);
+		
+		textMax = new JTextField();
+		textMax.setColumns(10);
+		textMax.setBounds(164, 84, 197, 23);
+		Excursoes.add(textMax);
+		
+		btnCriar = new JButton("Criar");
+		btnCriar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnCriar.setBounds(425, 135, 102, 23);
+		Excursoes.add(btnCriar);
+		
+		lblNewLabel_5_1 = new JLabel("MÁX. DE PESSOAS:");
+		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_5_1.setBounds(201, 56, 129, 23);
+		Excursoes.add(lblNewLabel_5_1);
+		
+		textCodigoCriar = new JTextField();
+		textCodigoCriar.setColumns(10);
+		textCodigoCriar.setBounds(380, 84, 197, 23);
+		Excursoes.add(textCodigoCriar);
+		
+		labelCodigo = new JLabel("CÓDIGO:");
+		labelCodigo.setHorizontalAlignment(SwingConstants.CENTER);
+		labelCodigo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		labelCodigo.setBounds(303, 366, 62, 23);
+		Excursoes.add(labelCodigo);
+		
+		textPreço = new JTextField();
+		textPreço.setColumns(10);
+		textPreço.setBounds(164, 135, 197, 23);
+		Excursoes.add(textPreço);
+		
+		btnRecuperar = new JButton("Recuperar");
+		btnRecuperar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRecuperar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnRecuperar.setBounds(269, 434, 129, 24);
+		Excursoes.add(btnRecuperar);
+		
+		btnMostrarValor = new JButton("Mostrar valor");
+		btnMostrarValor.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnMostrarValor.setBounds(482, 220, 129, 23);
+		Excursoes.add(btnMostrarValor);
+		
+		labelValor = new JLabel("VALOR");
+		labelValor.setHorizontalAlignment(SwingConstants.CENTER);
+		labelValor.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		labelValor.setBounds(288, 216, 92, 23);
+		Excursoes.add(labelValor);
+		
+		separator_2 = new JSeparator();
+		separator_2.setBounds(-11, 292, 724, 16);
+		Excursoes.add(separator_2);
+		
+		btnReservas = new JButton("Reservas");
+		btnReservas.setForeground(Color.BLACK);
+		btnReservas.setBackground(Color.CYAN);
+		btnReservas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnReservas.setBounds(36, 26, 102, 23);
+		Excursoes.add(btnReservas);
+		
+		JTextArea textAreaRec = new JTextArea();
+		textAreaRec.setBounds(450, 323, 197, 135);
+		Excursoes.add(textAreaRec);
+	}
+}

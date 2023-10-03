@@ -1,0 +1,63 @@
+package Excursao;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JButton;
+
+public class AplicacaoGraficaExcursao {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AplicacaoGraficaExcursao window = new AplicacaoGraficaExcursao();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public AplicacaoGraficaExcursao() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 370, 280);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Silva Excursões");
+		lblNewLabel.setFont(new Font("Hoyle PERSONAL USE ONLY", Font.BOLD, 30));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(76, 26, 197, 31);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Excursões");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(96, 100, 156, 31);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnRecuperarUmaExcurso_1 = new JButton("Reservas");
+		btnRecuperarUmaExcurso_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnRecuperarUmaExcurso_1.setBounds(96, 144, 156, 31);
+		frame.getContentPane().add(btnRecuperarUmaExcurso_1);
+	}
+}

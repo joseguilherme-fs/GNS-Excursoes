@@ -1,0 +1,128 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JSeparator;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+
+public class JanelaReservas {
+
+	private JFrame frame;
+	private JLabel lblNewLabel_3;
+	private JTextField textField;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+	private JTextField textField_1;
+	private JButton btnNewButton;
+	private JTextField textField_4;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaReservas window = new JanelaReservas();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public JanelaReservas() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 728, 446);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Reservas");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Hoyle PERSONAL USE ONLY", Font.BOLD, 32));
+		lblNewLabel.setBounds(269, 11, 173, 30);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Criar ou Cancelar");
+		lblNewLabel_1.setFont(new Font("Hoyle PERSONAL USE ONLY", Font.PLAIN, 22));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(37, 83, 173, 19);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		lblNewLabel_3 = new JLabel("Listar");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("Hoyle PERSONAL USE ONLY", Font.PLAIN, 22));
+		lblNewLabel_3.setBounds(539, 83, 92, 19);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		textField = new JTextField();
+		textField.setBounds(21, 154, 197, 30);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		lblNewLabel_4 = new JLabel("CPF:");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_4.setBounds(21, 129, 30, 14);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		lblNewLabel_5 = new JLabel("NOME:");
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_5.setBounds(21, 195, 46, 14);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(21, 220, 197, 30);
+		frame.getContentPane().add(textField_1);
+		
+		btnNewButton = new JButton("Criar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(62, 316, 102, 30);
+		frame.getContentPane().add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(500, 196, 187, 98);
+		frame.getContentPane().add(scrollPane);
+		
+		JButton btnNewButton_1 = new JButton("Listar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton_1.setBounds(539, 316, 102, 30);
+		frame.getContentPane().add(btnNewButton_1);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(500, 154, 187, 30);
+		frame.getContentPane().add(textField_4);
+		
+		JLabel lblNewLabel_8 = new JLabel("*Insira nome ou CPF");
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_8.setBounds(500, 131, 117, 14);
+		frame.getContentPane().add(lblNewLabel_8);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(356, 153, 10, 141);
+		frame.getContentPane().add(separator);
+		
+		JLabel resp1 = new JLabel("New label");
+		resp1.setBounds(91, 272, 46, 14);
+		frame.getContentPane().add(resp1);
+	}
+}

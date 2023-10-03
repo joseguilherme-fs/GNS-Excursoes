@@ -1,0 +1,517 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+import java.awt.Font;
+import java.awt.Toolkit;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JToolBar;
+import javax.swing.JTextArea;
+import java.awt.SystemColor;
+
+public class JanelaPrincipal {
+
+	JFrame JanelaRE;
+	private Excursao excursao;
+	private JFrame frame;
+	private JTextField textCPF_R;
+	private JTextField textNomeR;
+	private JTextField textListarR;
+	private JPanel ExcursoesP;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_6;
+	private JLabel lblNewLabel_7;
+	private JLabel valorTotal;
+	private JSeparator separator_1;
+	private JLabel respC;
+	private JLabel lblNewLabel_10;
+	private JTextField recuperarText;
+	private JLabel lblNewLabel_11;
+	private JTextField textMax;
+	private JButton btnCriar;
+	private JLabel lblNewLabel_5_1;
+	private JTextField textCodigoCriar;
+	private JLabel labelCodigo;
+	private JTextField textPreço;
+	private JButton btnRecuperar;
+	private JButton btnMostrarValor;
+	private JLabel labelValor;
+	private JSeparator separator_2;
+	private JButton btnReservas;
+	private JLabel lblNome;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaPrincipal window = new JanelaPrincipal();
+					window.JanelaRE.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public JanelaPrincipal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		JanelaRE = new JFrame();
+		JanelaRE.setIconImage(Toolkit.getDefaultToolkit().getImage(JanelaPrincipal.class.getResource("/Imagens/tm902qyc.png")));
+		JanelaRE.setTitle("Excursões");
+		JanelaRE.setResizable(false);
+		JanelaRE.setBounds(100, 100, 684, 541);
+		JanelaRE.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JanelaRE.getContentPane().setLayout(null);
+		
+		
+	
+		
+		JPanel ReservasP = new JPanel(); 
+		ReservasP.setBounds(0, 0, 668, 564);
+		JanelaRE.getContentPane().add(ReservasP);
+		ReservasP.setLayout(null);
+		ReservasP.setVisible(false);
+		
+		JPanel ExcursoesP = new JPanel();
+		ExcursoesP.setBounds(0, 0, 668, 564);
+		JanelaRE.getContentPane().add(ExcursoesP);
+		ExcursoesP.setLayout(null);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(450, 339, 197, 135);
+		ExcursoesP.add(scrollPane_1);
+		
+		JTextArea textAreaRec = new JTextArea();
+		scrollPane_1.setViewportView(textAreaRec);
+		textAreaRec.setEditable(false);
+		textAreaRec.setWrapStyleWord(true);
+		textAreaRec.setLineWrap(true);
+		
+		
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Criar ou Cancelar");
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1.setFont(new Font("Microsoft Tai Le", Font.BOLD, 22));
+		lblNewLabel_1_1.setBounds(34, 113, 203, 25);
+		ReservasP.add(lblNewLabel_1_1);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(453, 233, 187, 111);
+		ReservasP.add(scrollPane);
+		
+		JTextArea textAreaListarR = new JTextArea();
+		scrollPane.setViewportView(textAreaListarR);
+		textAreaListarR.setLineWrap(true);
+		textAreaListarR.setEditable(false);
+		textAreaListarR.setWrapStyleWord(true);
+		
+		JLabel respR = new JLabel("");
+		respR.setFont(new Font("Tahoma", Font.BOLD, 11));
+		respR.setForeground(Color.RED);
+		respR.setHorizontalAlignment(SwingConstants.CENTER);
+		respR.setBounds(23, 454, 606, 14);
+		ReservasP.add(respR);
+		
+		textCPF_R = new JTextField();
+		textCPF_R.setColumns(10);
+		textCPF_R.setBounds(37, 188, 197, 30);
+		ReservasP.add(textCPF_R);
+		
+		
+		
+		
+		JLabel labelCPF = new JLabel("CPF:");
+		labelCPF.setHorizontalAlignment(SwingConstants.CENTER);
+		labelCPF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		labelCPF.setBounds(36, 171, 30, 14);
+		ReservasP.add(labelCPF);
+		
+		textNomeR = new JTextField();
+		textNomeR.setColumns(10);
+		textNomeR.setBounds(37, 254, 197, 30);
+		ReservasP.add(textNomeR);
+		
+		JButton btnCriarR = new JButton("Criar");
+		btnCriarR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String cpf = textCPF_R.getText();
+				String nome = textNomeR.getText();
+				
+				textCPF_R.setText("");
+				textNomeR.setText("");
+				textCPF_R.requestFocus();
+				
+				if (excursao == null) {
+					respR.setText("Você ainda não criou uma excursão.");
+				}
+				else {
+					try {
+						excursao.criarReserva(nome,cpf);
+						respR.setText("Reserva criada!");
+						textAreaRec.setText(excursao.toString());
+						excursao.salvar();
+					} catch (Exception erro) {
+						String msg = erro.getMessage();
+						respR.setText(msg);
+					}
+				}
+			}
+		});
+		btnCriarR.setForeground(Color.BLACK);
+		btnCriarR.setBackground(SystemColor.window);
+		btnCriarR.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnCriarR.setBounds(84, 306, 102, 30);
+		ReservasP.add(btnCriarR);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setOrientation(SwingConstants.VERTICAL);
+		separator_3.setBounds(329, 187, 10, 141);
+		ReservasP.add(separator_3);
+		
+		textListarR = new JTextField();
+		textListarR.setColumns(10);
+		textListarR.setBounds(453, 188, 187, 30);
+		ReservasP.add(textListarR);
+		
+		JLabel lblNewLabel_8 = new JLabel("*Insira nome ou CPF");
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_8.setBounds(488, 165, 117, 14);
+		ReservasP.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Listar");
+		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_1.setFont(new Font("Microsoft Tai Le", Font.BOLD, 22));
+		lblNewLabel_3_1.setBounds(500, 114, 92, 25);
+		ReservasP.add(lblNewLabel_3_1);
+		
+		JButton btnListarR = new JButton("Listar");
+		btnListarR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dado = textListarR.getText();
+				try {
+					Integer cpf = Integer.parseInt(dado);
+					ArrayList<String> reservasCpf = excursao.listarReservasPorCpf(dado);
+					String exibicao = "";
+					for (String reserva : reservasCpf) {
+						exibicao += reserva + "\n";
+					}
+					textAreaListarR.setText(exibicao);
+					
+				} catch (NumberFormatException erro) {
+					ArrayList<String> reservasNome = excursao.listarReservasPorNome(dado);
+					String exibicao = "";
+					
+					for (String reserva : reservasNome) {
+						exibicao += reserva + "\n";
+					}
+					textAreaListarR.setText(exibicao);
+				}}
+		});
+		btnListarR.setForeground(Color.BLACK);
+		btnListarR.setBackground(SystemColor.window);
+		btnListarR.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnListarR.setBounds(495, 350, 102, 30);
+		ReservasP.add(btnListarR);
+		
+		
+		JLabel lblReservas = new JLabel("Reservas");
+		lblReservas.setForeground(new Color(0, 128, 0));
+		lblReservas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblReservas.setFont(new Font("Strawberry Blossom", Font.BOLD, 50));
+		lblReservas.setBackground(Color.CYAN);
+		lblReservas.setBounds(251, 11, 166, 41);
+		ReservasP.add(lblReservas);
+		
+		lblNewLabel_2 = new JLabel("Excursões");
+		lblNewLabel_2.setForeground(Color.MAGENTA);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Strawberry Blossom", Font.BOLD, 50));
+		lblNewLabel_2.setBackground(Color.CYAN);
+		lblNewLabel_2.setBounds(251, 11, 166, 41);
+		ExcursoesP.add(lblNewLabel_2);
+		
+		lblNewLabel_6 = new JLabel("Criar");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_6.setFont(new Font("Hotel De Paris Xe", Font.PLAIN, 20));
+		lblNewLabel_6.setBackground(Color.BLUE);
+		lblNewLabel_6.setBounds(21, 112, 73, 23);
+		ExcursoesP.add(lblNewLabel_6);
+		
+		lblNewLabel_7 = new JLabel("Recuperar");
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_7.setFont(new Font("Hotel De Paris Xe", Font.PLAIN, 20));
+		lblNewLabel_7.setBounds(21, 388, 138, 23);
+		ExcursoesP.add(lblNewLabel_7);
+		
+		valorTotal = new JLabel("Valor total");
+		valorTotal.setHorizontalAlignment(SwingConstants.LEFT);
+		valorTotal.setFont(new Font("Hotel De Paris Xe", Font.PLAIN, 20));
+		valorTotal.setBounds(21, 237, 138, 27);
+		ExcursoesP.add(valorTotal);
+		
+		separator_1 = new JSeparator();
+		separator_1.setBounds(-11, 194, 724, 16);
+		ExcursoesP.add(separator_1);
+		
+		respC = new JLabel("");
+		respC.setForeground(Color.RED);
+		respC.setFont(new Font("Microsoft Tai Le", Font.BOLD, 12));
+		respC.setHorizontalAlignment(SwingConstants.LEFT);
+		respC.setBounds(10, 483, 601, 14);
+		ExcursoesP.add(respC);
+		
+		lblNewLabel_10 = new JLabel("CÓDIGO:");
+		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_10.setBounds(445, 91, 62, 23);
+		ExcursoesP.add(lblNewLabel_10);
+		
+		recuperarText = new JTextField();
+		recuperarText.setColumns(10);
+		recuperarText.setBounds(235, 389, 197, 23);
+		ExcursoesP.add(recuperarText);
+		
+		lblNewLabel_11 = new JLabel("PREÇO:");
+		lblNewLabel_11.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_11.setBounds(229, 142, 62, 23);
+		ExcursoesP.add(lblNewLabel_11);
+		
+		textMax = new JTextField();
+		textMax.setColumns(10);
+		textMax.setBounds(162, 114, 197, 23);
+		ExcursoesP.add(textMax);
+		
+		
+		btnCriar = new JButton("Criar");
+		btnCriar.setForeground(Color.BLACK);
+		btnCriar.setBackground(SystemColor.window);
+		btnCriar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnCriar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String codigo = textCodigoCriar.getText();
+				String preco = textPreço.getText();
+				String max = textMax.getText();
+				
+				textCodigoCriar.setText("");
+				textPreço.setText("");
+				textMax.setText("");
+				textCodigoCriar.requestFocus();
+				
+				try {
+					if (codigo.equals("") || preco.equals("") || max.equals("")) {
+						respC.setText("Você deve preencher todos os campos para criar uma excursão.");
+					
+					} else {
+						excursao = new Excursao(Integer.valueOf(codigo), Double.valueOf(preco), Integer.valueOf(max));
+						excursao.salvar();
+						textAreaRec.setText(excursao.toString());
+					}
+						
+				} catch (Exception erroCriarExc) {
+					String erro = erroCriarExc.getMessage();
+					respC.setText(erro);
+				}
+			}
+		});
+		btnCriar.setBounds(423, 165, 102, 23);
+		ExcursoesP.add(btnCriar);
+		
+		lblNewLabel_5_1 = new JLabel("MÁX. DE PESSOAS:");
+		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_5_1.setBounds(196, 91, 129, 23);
+		ExcursoesP.add(lblNewLabel_5_1);
+		
+		textCodigoCriar = new JTextField();
+		textCodigoCriar.setColumns(10);
+		textCodigoCriar.setBounds(378, 114, 197, 23);
+		ExcursoesP.add(textCodigoCriar);
+		
+		labelCodigo = new JLabel("CÓDIGO:");
+		labelCodigo.setHorizontalAlignment(SwingConstants.CENTER);
+		labelCodigo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		labelCodigo.setBounds(303, 366, 62, 23);
+		ExcursoesP.add(labelCodigo);
+		
+		textPreço = new JTextField();
+		textPreço.setColumns(10);
+		textPreço.setBounds(162, 165, 197, 23);
+		ExcursoesP.add(textPreço);
+		
+		btnRecuperar = new JButton("Recuperar");
+		btnRecuperar.setForeground(Color.BLACK);
+		btnRecuperar.setBackground(SystemColor.window);
+		btnRecuperar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String codigo = recuperarText.getText();
+				recuperarText.setText("");
+				recuperarText.requestFocus();
+				try {
+					if(codigo.equals("")) {
+					respC.setText("Digite um código para recuperar.");
+					}
+					else {
+						excursao = new Excursao(Integer.parseInt(codigo));
+						excursao.carregar();
+						textAreaRec.setText(excursao.toString());;
+					}
+				} catch (FileNotFoundException erroArq) {
+					String erro = erroArq.getMessage();
+				} catch (Exception erroCodInvalido) {
+					String erro = erroCodInvalido.getMessage();
+
+				}
+			}
+		});
+		btnRecuperar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnRecuperar.setBounds(269, 434, 129, 24);
+		ExcursoesP.add(btnRecuperar);
+		
+		btnMostrarValor = new JButton("Calcular valor");
+		btnMostrarValor.setBackground(SystemColor.window);
+		btnMostrarValor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (excursao == null) {
+					respC.setText("Você ainda não criou uma excursão.");
+				}
+				else {
+					labelValor.setText("");
+					respC.setText("");
+					String v = Double.toString(excursao.calcularValorTotal());
+					labelValor.setText(v);
+				}
+				
+			}
+		});
+		btnMostrarValor.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnMostrarValor.setBounds(482, 239, 129, 23);
+		ExcursoesP.add(btnMostrarValor);
+		
+		labelValor = new JLabel("VALOR");
+		labelValor.setHorizontalAlignment(SwingConstants.CENTER);
+		labelValor.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		labelValor.setBounds(288, 239, 92, 23);
+		ExcursoesP.add(labelValor);
+		
+		separator_2 = new JSeparator();
+		separator_2.setBounds(-11, 312, 724, 16);
+		ExcursoesP.add(separator_2);
+		
+		btnReservas = new JButton("Reservas"); 
+		btnReservas.setForeground(Color.WHITE);
+		btnReservas.setBackground(new Color(0, 128, 0));
+		btnReservas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ExcursoesP.setVisible(false);
+				ReservasP.setVisible(true);
+				JanelaRE.setTitle("Reservas");
+			}
+		});
+		btnReservas.setBounds(84, 26, 102, 23);
+		ExcursoesP.add(btnReservas);
+		
+		
+		
+		JButton btnExcursoes = new JButton("Excursões");
+		btnExcursoes.setForeground(Color.WHITE);
+		btnExcursoes.setBackground(Color.MAGENTA);
+		btnExcursoes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ReservasP.setVisible(false);
+				ExcursoesP.setVisible(true);
+				JanelaRE.setTitle("Excursões");
+			}
+		});
+		btnExcursoes.setBounds(84, 26, 102, 23);
+		ReservasP.add(btnExcursoes);
+		
+		lblNome = new JLabel("NOME:");
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNome.setBounds(34, 238, 52, 14);
+		ReservasP.add(lblNome);
+		
+		JButton btnCancelarR = new JButton("Cancelar");
+		btnCancelarR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String cpf = textCPF_R.getText();
+				String nome = textNomeR.getText();
+				
+				try {
+					if (nome.equals("")) {
+						excursao.cancelarReserva(cpf);
+						textCPF_R.setText("");
+						respR.setText("Reservas canceladas com sucesso.");
+						excursao.salvar();
+					} else {
+						excursao.cancelarReserva(cpf, nome);
+						respR.setText("Reserva de " + nome + " cancelada com sucesso.");
+						textCPF_R.setText("");
+						textNomeR.setText("");
+						excursao.salvar();
+					}
+				} catch (Exception erro) {
+					String msg = erro.getMessage();
+					respR.setText(msg);
+					textCPF_R.setText("");
+					textNomeR.setText("");
+				}
+			}
+		});
+		btnCancelarR.setForeground(Color.BLACK);
+		btnCancelarR.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnCancelarR.setBackground(SystemColor.window);
+		btnCancelarR.setBounds(84, 350, 102, 30);
+		ReservasP.add(btnCancelarR);
+		
+		// Restante do código...
+
+        // Obtém as dimensões da tela principal
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Obtém as dimensões da janela
+        Dimension windowSize = JanelaRE.getSize();
+
+        // Calcula a posição da janela no centro da tela
+        int x = (screenSize.width - windowSize.width) / 2;
+        int y = (screenSize.height - windowSize.height) / 2;
+
+        // Define a posição da janela no centro da tela
+        JanelaRE.setLocation(x, y);
+        JanelaRE.setBounds(x, y, windowSize.width, windowSize.height);
+		
+			}
+	public JFrame getJanelaRE() {
+	    return JanelaRE;
+	}
+}

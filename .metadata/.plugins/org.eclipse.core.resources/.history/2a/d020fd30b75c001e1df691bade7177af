@@ -1,0 +1,126 @@
+import java.util.ArrayList;
+
+public class Excursão {
+	private int codigo;
+	private double preço;
+	private int max;
+	private ArrayList<String> listaReservas = new ArrayList<>();
+	
+	public Excursão(int codigo, double preço, int max) {
+		this.codigo = codigo;
+		this.preço = preço;
+		this.max = max;
+
+	}
+	public Excursão(int codigo) {
+		this.codigo = codigo;
+	}
+	
+	public void criarReserva(String nome, String CPF) throws Exception {
+		try {
+			if (listaReservas.size() < max) {
+				for (int i = 0; i < listaReservas.size(); i++) {
+					String cpf_nome[] = (listaReservas.get(i)).split("/");
+					try {
+						if (cpf_nome[1].equals(nome)) {
+							throw new Exception("Desculpe, a reserva já existe.");
+						}
+					} catch (Exception eCriarRes) {
+						System.out.println(eCriarRes.getMessage());
+						return;
+					}
+				}
+				listaReservas.add(CPF + '/' + nome);
+			}
+			else {
+				throw new Exception("Desculpe, a excursão está lotada. Não é possível fazer mais reservas.");
+			}
+			}
+			catch (Exception exLotada) {
+				System.out.println(exLotada.getMessage());
+			}
+	}
+		
+		
+	public void cancelarReserva(String cpf, String nome) {
+	    String reservaParaCancelar = cpf + "/" + nome;
+	    try {
+	        if (listaReservas.contains(reservaParaCancelar)) {
+	            listaReservas.remove(reservaParaCancelar);
+	            System.out.println("Reserva para " + nome + " (CPF: " + cpf + ") cancelada com sucesso!");
+	        } else {
+	            throw new Exception("Reserva para " + nome + " (CPF: " + cpf + ") não encontrada. Não foi possível cancelar.");
+	        }
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    }
+	}
+	
+	public void cancelarReserva(String cpf) {
+	    ArrayList<String> reservasParaRemover = new ArrayList<>();
+
+	    for (String reserva : listaReservas) {
+	        String cpfReserva = reserva.split("/")[0];
+	        if (cpfReserva.equals(cpf)) {
+	            reservasParaRemover.add(reserva);
+	        }
+	    }
+
+	    if (!reservasParaRemover.isEmpty()) {
+	        listaReservas.removeAll(reservasParaRemover);
+	        System.out.println("Todas as reservas para o CPF " + cpf + " foram canceladas com sucesso!");
+	    } else {
+	        System.out.println("Nenhuma reserva encontrada para o CPF " + cpf + ". Nada foi cancelado.");
+	    }
+	}
+	
+	
+	
+	public ArrayList<String> listarReservasPorCpf(String digitos) {
+	    ArrayList<String> reservasPorCpf = new ArrayList<>();
+
+	    for (String reserva : listaReservas) {
+	        String cpfReserva = reserva.split("/")[0];
+	        if (digitos.isEmpty() || cpfReserva.equals(digitos)) {
+	            reservasPorCpf.add(reserva);
+	        }
+	    }
+
+	    return reservasPorCpf;
+	}
+	
+	public ArrayList<String> listarReservasPorNome(String texto) {
+		ArrayList<String> reservasPorNome = new ArrayList<>();
+
+	    for (String reserva : listaReservas) {
+	        String nomeReserva = reserva.split("/")[1];
+	        if (texto.isEmpty() || nomeReserva.equals(texto)) {
+	            reservasPorNome.add(reserva);
+	        }
+	    }
+
+	    return reservasPorNome;
+	}
+
+	
+	public double calcularValorTotal() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "Excursão [codigo=" + codigo + ", preço=" + preço + ", max=" + max + ", listaReservas=" + listaReservas
+				+ "]";
+	}
+	
+	public void salvar( ) {
+	
+	}
+	
+	public void carregar() {
+		
+	}
+	
+	
+;
+}
