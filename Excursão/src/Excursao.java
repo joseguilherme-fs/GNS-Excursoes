@@ -34,7 +34,7 @@ public class Excursao {
 		}
 	}
 	
-	public void criarReserva(String nome, String CPF) throws Exception {
+	public void criarReserva(String CPF, String nome) throws Exception {
 			if (listaReservas.size() < max) {
 				for (int i = 0; i < listaReservas.size(); i++) {
 					String cpf_nome[] = (listaReservas.get(i)).split("/");
@@ -100,7 +100,7 @@ public class Excursao {
 	        if (digitos.equals("")) {
 	        	return listaReservas;
 	        }
-	        if (cpfReserva.equals(digitos)) {
+	        if (cpfReserva.contains(digitos)) {
 	            reservasPorCpf.add(reserva);
 	        }
 	    }
@@ -115,7 +115,7 @@ public class Excursao {
 	        if (texto.equals("")) {
 	        	return listaReservas;
 	        }
-	        if (nomeReserva.equals(texto)) {
+	        if (nomeReserva.contains(texto)) {
 	            reservasPorNome.add(reserva); 
 	        }
 	    }	

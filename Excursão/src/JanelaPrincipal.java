@@ -191,7 +191,7 @@ public class JanelaPrincipal {
 				}
 				else {
 					try {
-						excursao.criarReserva(nome,cpf);
+						excursao.criarReserva(cpf,nome);
 						respR.setText("Reserva criada!");
 						textAreaRec.setText(excursao.toString());
 						excursao.salvar();
